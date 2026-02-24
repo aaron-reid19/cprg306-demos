@@ -20,17 +20,31 @@ export default function page() {
         href: "https://en.wikipedia.org/wiki/Emperor_penguin",
         linkText: "Wikipedia Article",
   };
+
+  const penguinArray = [{...emperor},{...rockhopper},{...gentoo}]
     const pageHeader = {
         title: "Week 3: Component Props",
         description: "Make your components by dynamic by passing information through props"
     }
     return (
         <main>
+            
             <PageHeader {...pageHeader}/>
+            <section className="bg-gray-200 sm:bg-pink-200 lg:bg-teal-200 dark:bg-gray-800 dark:sm:bg-pink-800 dark:lg:bg-teal-800 p-4 rounded-lg mx-8 max-w-fit">
+                <h2 className="text-2xl lg:text-3xl font-semibold">
+                    Cards without Loops
+                </h2>
+                <InfoCard {...emperor}/>
+                <InfoCard {...gentoo}/>
+            <   InfoCard {...rockhopper}/>
+            </section>
+            <section className="m-4">
+                <h2 className="text-2xl mb-2">Cards with loops</h2>
+                {penguinArray.map((penguin) =>(
+                    <InfoCard key={penguin.name} {...penguin}/>
+                ))}
 
-            <InfoCard {...emperor}/>
-            <InfoCard {...gentoo}/>
-            <InfoCard {...rockhopper}/>
+            </section>
         </main>
     );
 }
